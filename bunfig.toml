@@ -1,0 +1,10 @@
+name    = "react-bun-ssr"
+version = "0.1.0"
+private = true
+
+# point d'entrée pour bun run
+entry = "src/index.tsx"
+
+[jsx]
+# on utilise le runtime React
+import_source = "react"
