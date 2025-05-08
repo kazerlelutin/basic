@@ -1,0 +1,42 @@
+version: "3.7"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Containerfile
+    image: basic-backend
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+    networks:
+      - basic-net
+
+  caddy:
+    build:
+      context: .
+      dockerfile: Containerfile.caddy
+    image: basic-caddy
+    restart: unless-stopped
+    env_file:
+      - .env
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - basic-net
+
+networks:
+  basic-net: {}
+
+volumes:
+  caddy_data:
+  caddy_config:
