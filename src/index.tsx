@@ -4,20 +4,34 @@ import { renderToReadableStream } from "react-dom/server";
 import App from "./App";
 import { apiRoutes } from "./api/routes";
 
-await Bun.build({
-  entrypoints: ['./src/hydrate.tsx'],
-  outdir: './public',
-  minify: true,
-  publicPath: '/public',
-  naming: 'hydrate.mjs',
-  format: 'esm',
+if (import.meta.env.DEV) {
+  await Bun.build({
+    entrypoints: ['./src/hydrate.tsx'],
+    outdir: './public',
+    minify: true,
+    publicPath: '/public',
+    naming: 'hydrate.mjs',
+    format: 'esm',
 
-});
+  });
+}
 
-serve({
-  port: 3000,
+const server = serve({
+  port: import.meta.env.PORT || 3000,
+  development: {
+    hmr: true,
+    console: true,
+  },
+  websocket: {
+    message(ws) {
+      // Publish to all "chat" subscribers
+      server.publish("chat", "Hello everyone!");
+    },
+  },
+
   routes: {
     ...apiRoutes,
+
     '/public/*': (req) => {
       const cleanUrl = req.url.split('/public/')[1];
       const publicDir = Bun.file('./public/' + cleanUrl);

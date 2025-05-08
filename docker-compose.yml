@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: basic-backend
+    restart: unless-stopped
+    env_file:
+      - .env
+    network_mode: host
+
+  caddy:
+    build:
+      context: .
+      dockerfile: Dockerfile.caddy
+    image: basic-caddy:latest
+    restart: unless-stopped
+    env_file:
+      - .env
+    depends_on:
+      - backend
+    network_mode: host
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  caddy_data:
+  caddy_config: 
