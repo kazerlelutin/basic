@@ -2,9 +2,7 @@
 {env.DOMAIN} {
 
 
-	tls {env.EMAIL} {
-		protocols tls1.3 tls1.2
-	}
+	tls b@bouteiller.contact
 
 
   reverse_proxy backend:3000
