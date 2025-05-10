@@ -1,9 +1,11 @@
 
 {env.DOMAIN} {
 
-  tls {
-		email {env.EMAIL}
+
+	tls {env.EMAIL} {
+		protocols tls1.3 tls1.2
 	}
+
 
   reverse_proxy backend:3000
 
