@@ -1,13 +1,7 @@
-{
-  # Enregistre le provider DNS Infomaniak (module: dns.providers.infomaniak)
-  acme_dns infomaniak {env.INFOMANIAK_API_TOKEN}
-}
 
 {env.DOMAIN} {
-  # Challenge DNS-01 via Infomaniak
-  tls {
-    dns infomaniak {env.INFOMANIAK_API_TOKEN}
-  }
+
+  tls {env.EMAIL}
 
   reverse_proxy backend:3000
 
