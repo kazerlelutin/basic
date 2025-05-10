@@ -15,10 +15,7 @@ services:
       - basic-net
 
   caddy:
-    build:
-      context: .
-      dockerfile: Containerfile.caddy
-    image: basic-caddy
+    image: docker.io/library/caddy:2
     restart: unless-stopped
     env_file:
       - .env
