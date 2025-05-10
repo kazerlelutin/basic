@@ -17,13 +17,13 @@ services:
   caddy:
     image: docker.io/library/caddy:2
     restart: unless-stopped
-    env_file:
-      - .env
     depends_on:
       - backend
     ports:
       - "80:80"
       - "443:443"
+    env_file:
+      - .env
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
       - caddy_data:/data
