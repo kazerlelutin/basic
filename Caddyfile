@@ -5,7 +5,6 @@
 	tls b@bouteiller.contact {
 
 		protocols tls1.3 tls1.2
-		disable_tls_alpn_challenge
 	
 	}
 
