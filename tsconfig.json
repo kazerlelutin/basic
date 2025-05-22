@@ -1,12 +1,11 @@
 {
   "compilerOptions": {
     // Enable latest features
-  "target": "ESNext",
+    "target": "ESNext",
     "module": "ESNext",
     "jsx": "react-jsx",        
     "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true,
-
 
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
@@ -20,7 +19,15 @@
     // Some stricter flags (disabled by default)
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "noPropertyAccessFromIndexSignature": false
+    "noPropertyAccessFromIndexSignature": false,
+    "types": ["bun:test", "@testing-library/jest-dom"]
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "register-solid.ts"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "register-solid.ts",
+    "test/**/*.ts",
+    "test/**/*.tsx",
+    "matchers.d.ts"
+  ]
 }

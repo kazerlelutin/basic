@@ -4,9 +4,16 @@
   "type": "module",
   "scripts": {
     "dev": "bun run --hot  src/index.tsx",
+    "test": "bun test",
+    "test:watch": "bun test --watch",
+    "test:coverage": "bun test --coverage",
     "build": "bun build src/hydrate.tsx --outfile ./public/hydrate.mjs --format esm --minify && bun build --compile --minify --sourcemap ./src/index.tsx --outfile basic.server"
   },
   "devDependencies": {
+    "@happy-dom/global-registrator": "^17.4.7",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
     "@types/bun": "latest",
     "@types/react-dom": "^19.1.3"
   },

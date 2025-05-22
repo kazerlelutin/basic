@@ -1,15 +1,8 @@
-import { useState } from "react";
+
+import { useCounter } from "./counter.ctrl";
 
 export function Counter() {
-  const [count, setCount] = useState(0);
-
-  const handleIncrement = () => {
-    setCount(count + 1);
-  };
-
-  const handleDecrement = () => {
-    setCount(count - 1);
-  };
+  const { count, handleIncrement, handleDecrement } = useCounter();
 
   return (
     <div>

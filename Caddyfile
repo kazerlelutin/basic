@@ -6,7 +6,7 @@
 }
 
 # Domaine Infomaniak
-ben-to.fr {
+{$DOMAIN} {
   tls {
     dns infomaniak {env.INFOMANIAK_API_TOKEN}
     propagation_timeout 15m
